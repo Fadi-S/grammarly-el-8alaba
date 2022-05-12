@@ -7,20 +7,16 @@
 
 typedef struct Node Node;
 struct Node{
-    int key;
     char *data;
     Node *right;
     Node *left;
 };
-Node *newNode(int key, char *data);
-Node *searchBTree(Node* node, int key);
-Node* insertData(Node* node, int key, char* data);
+Node *newNode(char *data);
+Node *searchBTree(Node* node, char* key);
+Node* insertData(Node* node, char* data);
 Node* insertNode(Node* node, Node *nNode);
-Node *getNext(Node* node);
-char* getData(Node* node);
-int getKey(Node* node);
-Node *getPrevious(Node* node);
 void deleteNode(Node* node);
+int getHeight(Node* root);
 void displayBTree(Node* root);
 
 #endif //LECTURE_10_BTREE_H
