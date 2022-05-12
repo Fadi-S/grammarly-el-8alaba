@@ -79,7 +79,7 @@ Node* searchBTree(Node* root, char* key)
 
     if(strcasecmp(root->data, key) == 0) return root;
 
-    if(strcasecmp(root->data, key) == 1) {
+    if(strcasecmp(root->data, key) > 0) {
         return searchBTree(root->left, key);
     }
 

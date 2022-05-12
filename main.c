@@ -6,43 +6,27 @@
 void removeNewLine(char *string)
 {
     while ((string = strstr(string, "\n")) != NULL)
-    {
         *string = '\0';
-    }
-}
-
-Node *createBalancedTree(char* data[], int start, int end) {
-    int middle = (start + end) / 2;
-    Node *root;
-
-    if(start >= end) return newNode("a");
-
-    root = newNode(data[middle]);
-    root->left = createBalancedTree(data, start, middle - 1);
-    root->right = createBalancedTree(data, middle + 1, end);
-
-    return root;
 }
 
 Node* readFromFile(int *wordCount) {
+    *wordCount = 0;
     FILE *file = fopen("words.txt", "r");
     if(!file) {
         printf("File not found");
         exit(-1);
     }
 
-    char* data[9000];
-    int i = 0;
+    Node *root = newNode("-");
     while(!feof(file)) {
         char word[32];
         fgets(word, 31, file);
         removeNewLine(word);
         (*wordCount)++;
-        data[i] = word;
-        i++;
+        insertData(root, word);
     }
 
-    return createBalancedTree(data, 0, *wordCount);
+    return root;
 }
 
 int main() {
@@ -54,7 +38,21 @@ int main() {
 
     printf("Height = %d\n", getHeight(dictionary));
 
+    char sentence[301];
+    printf("Enter a sentence: \n");
+    fgets(sentence, 300, stdin);
 
+    char* word = strtok(sentence, " ");
+
+    while(word) {
+        removeNewLine(word);
+        Node * node = searchBTree(dictionary, word);
+
+        if (node) printf("%s - Correct.\n", node->data);
+        else printf("%s - Incorrect.\n", word);
+
+        word = strtok(NULL, " ");
+    }
 
     return 0;
 }
