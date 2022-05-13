@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <string.h>
+#include "string.h"
 #include <stdio.h>
 
 typedef struct Node Node;
@@ -15,10 +15,10 @@ Node *newNode(char *data) {
 
     if (!node) return NULL;
 
-    node->data = malloc(strlen(data)+2);
-    strcpy(node->data, data);
+    node->data = malloc(strlen(data) + 1);
     node->right = NULL;
     node->left = NULL;
+    strcpy(node->data, data);
 
     return node;
 }
@@ -50,8 +50,12 @@ int getHeight(Node *root){
 }
 
 Node *insertNode(Node *node, Node *nNode) {
-    if(!node || strcasecmp(node->data, nNode->data) == 0) {
+    if(!node) {
         return nNode;
+    }
+
+    if(strcasecmp(node->data, nNode->data) == 0) {
+        return node;
     }
 
     if(strcasecmp(node->data, nNode->data) > 0) {
@@ -66,11 +70,7 @@ Node *insertNode(Node *node, Node *nNode) {
 }
 
 Node *insertData(Node *node, char* data) {
-    Node *nNode = newNode(data);
-
-    insertNode(node, nNode);
-
-    return nNode;
+    return insertNode(node, newNode(data));
 }
 
 Node* searchBTree(Node* root, char* key)
@@ -86,10 +86,10 @@ Node* searchBTree(Node* root, char* key)
     return searchBTree(root->right, key);
 }
 
-void displayBTree(Node* root) {
-    if(root == NULL) return;
+void displayBTree(Node* node) {
+    if(node == NULL) return;
 
-    displayBTree(root->left);
-    printf("[%s]\n", root->data);
-    displayBTree(root->right);
+    displayBTree(node->left);
+    printf("%s\n", node->data);
+    displayBTree(node->right);
 }

@@ -5,24 +5,27 @@
 
 void removeNewLine(char *string)
 {
-    while ((string = strstr(string, "\n")) != NULL)
-        *string = '\0';
+    string[strcspn(string, "\r\n")] = 0;
 }
 
 Node* readFromFile(int *wordCount) {
     *wordCount = 0;
-    FILE *file = fopen("words.txt", "r");
+    FILE *file = fopen("EN-US-Dictionary.txt", "r");
     if(!file) {
         printf("File not found");
         exit(-1);
     }
 
-    Node *root = newNode("-");
+    Node *root = NULL;
     while(!feof(file)) {
         char word[32];
         fgets(word, 31, file);
         removeNewLine(word);
         (*wordCount)++;
+        if(!root) {
+            root = newNode(word);
+            continue;
+        }
         insertData(root, word);
     }
 
@@ -37,7 +40,6 @@ int main() {
     printf("Size = %d\n", wordCount);
 
     printf("Height = %d\n", getHeight(dictionary));
-
     char sentence[301];
     printf("Enter a sentence: \n");
     fgets(sentence, 300, stdin);
