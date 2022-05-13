@@ -90,6 +90,6 @@ void displayBTree(Node* node) {
     if(node == NULL) return;
 
     displayBTree(node->left);
-    printf("%s\n", node->data);
+    printf("[%s]\n", node->data);
     displayBTree(node->right);
 }
