@@ -42,6 +42,10 @@ int main() {
     printf("Enter a sentence: \n");
     fgets(sentence, 300, stdin);
 
+    Node *inosuc=in
+
+
+
     char* word = strtok(sentence, " ");
 
     while(word) {

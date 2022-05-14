@@ -118,33 +118,39 @@ Node *inorderSuccessor(Node *root, char*key){
         successor = findMin(current->right);
     return successor;
 }
-Node*inorderPredessor(Node*root)
-{
-    root = root->left;
-    if(root == NULL)
-        return NULL;
-    while(root->right != NULL)
-    {
-        root = root->right;
+Node *inorderpredeccessor(Node *root, char*key){
+    if (!root) return NULL;
+    Node *successor = NULL;
+    Node *current  = root;
+    while(current && strcasecmp(current->data , key)!=0){
+        if(strcasecmp(current->data , key)>0){
+            successor = current;
+            current= current->right;
+        }
+        else current = current->left;
     }
-    return root;
+    if (!current) return NULL;
+    if(current && current->left)
+        successor = findMax(current->left);
+    return successor;
 }
-Node*findPredecessorRecursive(Node*root,Node*pred,char*key){
 
-if(root == NULL){
-return NULL;
-}
-if (strcasecmp(root->data , key)==0) {
-if (root->left != NULL) {
-return findMax(root->left);
-}
-}
-else if (strcasecmp( root->data,key)>0) {
-return findPredecessorRecursive(root->left, pred, key);
-}
-else {
-pred = root;
-return findPredecessorRecursive(root->right, pred, key);
-}
-return pred;
-}
+//Node*findPredecessorRecursive(Node*root,char*key){
+//Node*pred=NULL;
+//if(root == NULL){
+//return NULL;
+//}
+//if (strcasecmp(root->data , key)==0) {
+//if (root->left != NULL) {
+//return findMax(root->left);
+//}
+//}
+//else if (strcasecmp( root->data,key)>0) {
+//return findPredecessorRecursive(root->left, key);
+//}
+//else {
+//pred = root;
+//return findPredecessorRecursive(root->right,key);
+//}
+//return pred;
+//}
