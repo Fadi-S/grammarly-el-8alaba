@@ -131,7 +131,7 @@ Node *inorderpredeccessor(Node *root, char*key){
     }
     if (!current) return NULL;
     if(current && current->left)
-        successor = findMax(current->left);
+        successor = findMin(current->left);
     return successor;
 }
 
