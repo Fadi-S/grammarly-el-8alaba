@@ -37,26 +37,29 @@ int main() {
     printf("Size = %d\n", wordCount);
 
     printf("Height = %d\n", getHeight(dictionary));
-
     char sentence[301];
     printf("Enter a sentence: \n");
     fgets(sentence, 300, stdin);
-
-    Node *inosuc=in
-
-
-
     char* word = strtok(sentence, " ");
+        while (word) {
+            removeNewLine(word);
+            Node *node = searchBTree(dictionary, word);
+            if (node) printf("%s - Correct.\n", node->data);
+            else {
+                printf("%s - Incorrect.\n", word);
+                Node *inosuc = inorderSuccessor(dictionary, word);
+                if (inosuc)
+                    printf("%s\n", inosuc->data);
+                Node *inodec = inorderpredeccessor(dictionary, word);
+                if (inodec)
+                    printf("%s\n", inodec->data);
+            }
 
-    while(word) {
-        removeNewLine(word);
-        Node * node = searchBTree(dictionary, word);
 
-        if (node) printf("%s - Correct.\n", node->data);
-        else printf("%s - Incorrect.\n", word);
+            word = strtok(NULL, " ");
 
-        word = strtok(NULL, " ");
-    }
+        }
+
 
     return 0;
 }

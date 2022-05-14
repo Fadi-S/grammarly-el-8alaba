@@ -95,7 +95,8 @@ void displayBTree(Node* root) {
 }
 Node *findMin(Node *n){
     if (n && n->left) return findMin(n->left);
-    return n;}
+    return n;
+}
     Node *findMax(Node*n)
     {
     if(n&&n->right)
@@ -107,13 +108,13 @@ Node *inorderSuccessor(Node *root, char*key){
     Node *successor = NULL;
     Node *current  = root;
     while(current && strcasecmp(current->data , key)!=0){
-        if(strcasecmp(current->data , key)<0){
+        if(strcasecmp(current->data , key)>0){
             successor = current;
             current= current->left;
         }
         else current = current->right;
     }
-    if (!current) return NULL;
+   // if (!current) return NULL;
     if(current && current->right)
         successor = findMin(current->right);
     return successor;
@@ -123,13 +124,13 @@ Node *inorderpredeccessor(Node *root, char*key){
     Node *successor = NULL;
     Node *current  = root;
     while(current && strcasecmp(current->data , key)!=0){
-        if(strcasecmp(current->data , key)>0){
+        if(strcasecmp(current->data , key)<0){
             successor = current;
             current= current->right;
         }
         else current = current->left;
     }
-    if (!current) return NULL;
+    //if (!current) return NULL;
     if(current && current->left)
         successor = findMin(current->left);
     return successor;

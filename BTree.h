@@ -19,7 +19,8 @@ void deleteNode(Node* node);
 int getHeight(Node* root);
 void displayBTree(Node* node);
 Node *inorderSuccessor(Node *root, char*key);
-Node*findPredecessorRecursive(Node*root,Node*pred,char*key);
+Node *inorderpredeccessor(Node *root, char*key);
+
 
 
 #endif //LECTURE_10_BTREE_H
