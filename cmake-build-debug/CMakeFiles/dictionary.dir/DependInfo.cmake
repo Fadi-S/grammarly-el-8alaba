@@ -4,12 +4,21 @@ set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
 
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "C"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_C
+  "/Users/fadi/CLionProjects/Koleya/Term2/dictionary/BTree.c" "/Users/fadi/CLionProjects/Koleya/Term2/dictionary/cmake-build-debug/CMakeFiles/dictionary.dir/BTree.c.o"
+  "/Users/fadi/CLionProjects/Koleya/Term2/dictionary/main.c" "/Users/fadi/CLionProjects/Koleya/Term2/dictionary/cmake-build-debug/CMakeFiles/dictionary.dir/main.c.o"
+  )
+set(CMAKE_C_COMPILER_ID "AppleClang")
+
+# The include file search paths:
+set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/USER/OneDrive/Documents/GitHub/grammarly-el-8alaba/BTree.c" "CMakeFiles/dictionary.dir/BTree.c.obj" "gcc" "CMakeFiles/dictionary.dir/BTree.c.obj.d"
-  "C:/Users/USER/OneDrive/Documents/GitHub/grammarly-el-8alaba/main.c" "CMakeFiles/dictionary.dir/main.c.obj" "gcc" "CMakeFiles/dictionary.dir/main.c.obj.d"
   )
 
 # Targets to which this target links.
