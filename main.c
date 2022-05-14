@@ -11,7 +11,7 @@ void removeNewLine(char *string)
 
 Node* readFromFile(int *wordCount) {
     *wordCount = 0;
-    FILE *file = fopen("words.txt", "r");
+    FILE *file = fopen("C:\\Users\\USER\\OneDrive\\Documents\\GitHub\\grammarly-el-8alaba\\EN-US-Dictionary.txt", "r");
     if(!file) {
         printf("File not found");
         exit(-1);

@@ -93,3 +93,58 @@ void displayBTree(Node* root) {
     printf("[%s]\n", root->data);
     displayBTree(root->right);
 }
+Node *findMin(Node *n){
+    if (n && n->left) return findMin(n->left);
+    return n;}
+    Node *findMax(Node*n)
+    {
+    if(n&&n->right)
+        return findMax(n->right);
+        return n;
+    }
+Node *inorderSuccessor(Node *root, char*key){
+    if (!root) return NULL;
+    Node *successor = NULL;
+    Node *current  = root;
+    while(current && strcasecmp(current->data , key)!=0){
+        if(strcasecmp(current->data , key)<0){
+            successor = current;
+            current= current->left;
+        }
+        else current = current->right;
+    }
+    if (!current) return NULL;
+    if(current && current->right)
+        successor = findMin(current->right);
+    return successor;
+}
+Node*inorderPredessor(Node*root)
+{
+    root = root->left;
+    if(root == NULL)
+        return NULL;
+    while(root->right != NULL)
+    {
+        root = root->right;
+    }
+    return root;
+}
+Node*findPredecessorRecursive(Node*root,Node*pred,char*key){
+
+if(root == NULL){
+return NULL;
+}
+if (strcasecmp(root->data , key)==0) {
+if (root->left != NULL) {
+return findMax(root->left);
+}
+}
+else if (strcasecmp( root->data,key)>0) {
+return findPredecessorRecursive(root->left, pred, key);
+}
+else {
+pred = root;
+return findPredecessorRecursive(root->right, pred, key);
+}
+return pred;
+}
