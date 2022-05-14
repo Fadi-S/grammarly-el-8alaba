@@ -1,0 +1,3 @@
+C:/Users/USER/OneDrive/Documents/GitHub/grammarly-el-8alaba/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/USER/OneDrive/Documents/GitHub/grammarly-el-8alaba/cmake-build-debug/CMakeFiles/dictionary.dir
+C:/Users/USER/OneDrive/Documents/GitHub/grammarly-el-8alaba/cmake-build-debug/CMakeFiles/edit_cache.dir
