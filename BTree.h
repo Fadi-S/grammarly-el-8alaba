@@ -17,6 +17,6 @@ Node* insertData(Node* node, char* data);
 Node* insertNode(Node* node, Node *nNode);
 void deleteNode(Node* node);
 int getHeight(Node* root);
-void displayBTree(Node* root);
+void displayBTree(Node* node);
 
 #endif //LECTURE_10_BTREE_H
