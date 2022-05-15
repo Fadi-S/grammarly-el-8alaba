@@ -20,7 +20,7 @@ int getHeight(Node* root);
 void displayBTree(Node* node);
 Node *inorderSuccessor(Node *root, char*key);
 Node *inorderpredeccessor(Node *root, char*key);
-
+Node *preNull(Node *root, char*key);
 
 
 #endif //LECTURE_10_BTREE_H

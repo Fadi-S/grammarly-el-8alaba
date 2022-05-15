@@ -130,28 +130,36 @@ Node *inorderpredeccessor(Node *root, char*key){
         }
         else current = current->left;
     }
-    //if (!current) return NULL;
     if(current && current->left)
         successor = findMin(current->left);
     return successor;
 }
+char*findParent( Node* node,char*val,char*parent)
+{
+    if (node == NULL)
+      return NULL;
+    if (strcasecmp(node->data,val)==0) {
+        return parent;
+    }
+    else {
+        findParent(node->right, val, node->data);
+        findParent(node->left, val, node->data);
+    }
+}
 
-//Node*findPredecessorRecursive(Node*root,char*key){
-//Node*pred=NULL;
-//if(root == NULL){
-//return NULL;
-//}
-//if (strcasecmp(root->data , key)==0) {
-//if (root->left != NULL) {
-//return findMax(root->left);
-//}
-//}
-//else if (strcasecmp( root->data,key)>0) {
-//return findPredecessorRecursive(root->left, key);
-//}
-//else {
-//pred = root;
-//return findPredecessorRecursive(root->right,key);
-//}
-//return pred;
-//}
+Node *preNull(Node *root, char*key){
+    if (!root) return NULL;
+    Node *successor = NULL;
+    Node *current  = root;
+    char*temp;
+    while(current){
+        //temp=current;
+        if(strcasecmp(current->data , key)>0){
+            successor = current;
+           current= current->left;
+        }
+       else current = current->right;
+    }
+    temp= findParent(root,successor->data,"doesn't exist");
+    printf(",%s",temp);
+}

@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #include "BTree.h"
 #include "string.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include "BTree.h"
-#include "string.h"
-
 void removeNewLine(char *string) {
     string[strcspn(string, "\r\n")] = 0;
 }
@@ -57,7 +51,12 @@ int main() {
 
             Node *inodec = inorderpredeccessor(dictionary, word);
             if (inodec)
-                printf(", %s\n", inodec->data);
+                printf(", %s", inodec->data);
+            preNull(dictionary, word);
+
+//            Node *pre_null = preNull(dictionary, word);
+//            if (pre_null)
+//                printf(", %s\n", pre_null->data);
         }
 
         word = strtok(NULL, " ");

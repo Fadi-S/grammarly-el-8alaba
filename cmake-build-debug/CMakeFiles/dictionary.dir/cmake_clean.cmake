@@ -1,8 +1,12 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/dictionary.dir/BTree.c.o"
-  "CMakeFiles/dictionary.dir/main.c.o"
-  "dictionary"
+  "CMakeFiles/dictionary.dir/BTree.c.obj"
+  "CMakeFiles/dictionary.dir/BTree.c.obj.d"
+  "CMakeFiles/dictionary.dir/main.c.obj"
+  "CMakeFiles/dictionary.dir/main.c.obj.d"
+  "dictionary.exe"
+  "dictionary.exe.manifest"
   "dictionary.pdb"
+  "libdictionary.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
