@@ -138,28 +138,25 @@ char*findParent( Node* node,char*val,char*parent)
 {
     if (node == NULL)
       return NULL;
-    if (strcasecmp(node->data,val)==0) {
-        return parent;
-    }
+    if (strcasecmp(node->data, val) == 0) printf(",%s\n",parent) ;
     else {
         findParent(node->right, val, node->data);
         findParent(node->left, val, node->data);
     }
 }
-
-Node *preNull(Node *root, char*key){
+char*preNull(Node *root, char*key){
     if (!root) return NULL;
     Node *successor = NULL;
     Node *current  = root;
-    char*temp;
-    while(current){
-        //temp=current;
-        if(strcasecmp(current->data , key)>0){
+    char *temp;
+    while(current && strcasecmp(current->data , key)!=0){
+        if(strcasecmp(current->data , key)<0){
             successor = current;
-           current= current->left;
+            current= current->right;
         }
-       else current = current->right;
+        else current = current->left;
     }
-    temp= findParent(root,successor->data,"doesn't exist");
-    printf(",%s",temp);
+    if(current && current->left)
+        successor = findMin(current->left);
+    findParent(root,successor->data,"doesn't exist");
 }

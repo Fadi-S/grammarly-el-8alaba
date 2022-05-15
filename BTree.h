@@ -21,6 +21,7 @@ void displayBTree(Node* node);
 Node *inorderSuccessor(Node *root, char*key);
 Node *inorderpredeccessor(Node *root, char*key);
 Node *preNull(Node *root, char*key);
+char*findParent( Node* node,char*val,char*parent);
 
 
 #endif //LECTURE_10_BTREE_H

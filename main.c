@@ -52,11 +52,7 @@ int main() {
             Node *inodec = inorderpredeccessor(dictionary, word);
             if (inodec)
                 printf(", %s", inodec->data);
-            preNull(dictionary, word);
-
-//            Node *pre_null = preNull(dictionary, word);
-//            if (pre_null)
-//                printf(", %s\n", pre_null->data);
+          preNull(dictionary, word);
         }
 
         word = strtok(NULL, " ");
