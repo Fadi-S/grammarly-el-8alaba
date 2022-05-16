@@ -15,7 +15,7 @@ Node *newNode(char *data) {
 
     if (!node) return NULL;
 
-    node->data = malloc(strlen(data)+2);
+    node->data = malloc(strlen(data) + 1);
     strcpy(node->data, data);
     node->right = NULL;
     node->left = NULL;
@@ -23,24 +23,9 @@ Node *newNode(char *data) {
     return node;
 }
 
-void deleteNode(Node *node) {
-    if (!node)
-        return;
-
-    Node* prev = node->left, *right=node->right;
-
-    if(right)
-        right->left = prev;
-
-    if(prev)
-        prev->right = right;
-
-    free(node);
-}
-
-int getHeight(Node *root){
+int getHeight(Node *root) {
     int leftHeight, rightHeight;
-    if(root == NULL)
+    if (root == NULL)
         return 0;
 
     leftHeight = getHeight(root->left);
@@ -50,22 +35,22 @@ int getHeight(Node *root){
 }
 
 Node *insertNode(Node *node, Node *nNode) {
-    if(!node || strcasecmp(node->data, nNode->data) == 0) {
+    if (!node || strcasecmp(node->data, nNode->data) == 0) {
         return nNode;
     }
 
-    if(strcasecmp(node->data, nNode->data) > 0) {
+    if (strcasecmp(node->data, nNode->data) > 0) {
         node->left = insertNode(node->left, nNode);
     }
 
-    if(strcasecmp(node->data, nNode->data) < 0) {
+    if (strcasecmp(node->data, nNode->data) < 0) {
         node->right = insertNode(node->right, nNode);
     }
 
     return node;
 }
 
-Node *insertData(Node *node, char* data) {
+Node *insertData(Node *node, char *data) {
     Node *nNode = newNode(data);
 
     insertNode(node, nNode);
@@ -73,90 +58,22 @@ Node *insertData(Node *node, char* data) {
     return nNode;
 }
 
-Node* searchBTree(Node* root, char* key)
-{
-    if(root == NULL) return NULL;
+Node *searchBTree(Node *root, char *key) {
+    if (root == NULL) return NULL;
 
-    if(strcasecmp(root->data, key) == 0) return root;
+    if (strcasecmp(root->data, key) == 0) return root;
 
-    if(strcasecmp(root->data, key) > 0) {
+    if (strcasecmp(root->data, key) > 0) {
         return searchBTree(root->left, key);
     }
 
     return searchBTree(root->right, key);
 }
 
-void displayBTree(Node* root) {
-    if(root == NULL) return;
+void displayBTree(Node *root) {
+    if (root == NULL) return;
 
     displayBTree(root->left);
     printf("[%s]\n", root->data);
     displayBTree(root->right);
-}
-Node *findMin(Node *n){
-    if (n && n->left) return findMin(n->left);
-    return n;
-}
-    Node *findMax(Node*n)
-    {
-    if(n&&n->right)
-        return findMax(n->right);
-        return n;
-    }
-Node *inorderSuccessor(Node *root, char*key){
-    if (!root) return NULL;
-    Node *successor = NULL;
-    Node *current  = root;
-    while(current && strcasecmp(current->data , key)!=0){
-        if(strcasecmp(current->data , key)>0){
-            successor = current;
-            current= current->left;
-        }
-        else current = current->right;
-    }
-   // if (!current) return NULL;
-    if(current && current->right)
-        successor = findMin(current->right);
-    return successor;
-}
-Node *inorderpredeccessor(Node *root, char*key){
-    if (!root) return NULL;
-    Node *successor = NULL;
-    Node *current  = root;
-    while(current && strcasecmp(current->data , key)!=0){
-        if(strcasecmp(current->data , key)<0){
-            successor = current;
-            current= current->right;
-        }
-        else current = current->left;
-    }
-    if(current && current->left)
-        successor = findMin(current->left);
-    return successor;
-}
-char*findParent( Node* node,char*val,char*parent)
-{
-    if (node == NULL)
-      return NULL;
-    if (strcasecmp(node->data, val) == 0) printf(",%s\n",parent) ;
-    else {
-        findParent(node->right, val, node->data);
-        findParent(node->left, val, node->data);
-    }
-}
-char*preNull(Node *root, char*key){
-    if (!root) return NULL;
-    Node *successor = NULL;
-    Node *current  = root;
-    char *temp;
-    while(current && strcasecmp(current->data , key)!=0){
-        if(strcasecmp(current->data , key)<0){
-            successor = current;
-            current= current->right;
-        }
-        else current = current->left;
-    }
-    if(current && current->left)
-        successor = findMin(current->left);
-    findParent(root,successor->data,"doesn't exist");
 }
