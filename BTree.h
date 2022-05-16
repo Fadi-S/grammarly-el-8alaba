@@ -1,4 +1,4 @@
-g#ifndef BTREE_ELTEAM_ELGAMED_H
+#ifndef BTREE_ELTEAM_ELGAMED_H
 #define BTREE_ELTEAM_ELGAMED_H
 
 typedef struct Node Node;
