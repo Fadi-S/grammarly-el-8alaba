@@ -8,21 +8,21 @@ void removeNewLine(char *string) {
 }
 
 Node *getAdjacentNode(Node *current, char *key, int isSuccessor) {
-    Node *successor;
+    Node *adjacent;
 
-    while (current && strcasecmp(current->data , key) != 0) {
+    while (current && strcasecmp(current->data, key) != 0) {
         char *first = isSuccessor ? current->data : key;
         char *second = !isSuccessor ? current->data : key;
 
         if (strcasecmp(first, second) > 0) {
-            successor = current;
+            adjacent = current;
             current = isSuccessor ? current->left : current->right;
         } else {
             current = !isSuccessor ? current->left : current->right;
         }
     }
 
-    return successor;
+    return adjacent;
 }
 
 Node *inorderSuccessor(Node *root, char *key) {
@@ -54,7 +54,11 @@ Node *findParent(Node *node, char *key, Node *parent) {
 Node *previousBeforeNull(Node *root, char *key) {
     if (!root) return NULL;
 
-    return findParent(root, getAdjacentNode(root, key, 0)->data, NULL);
+    return findParent(
+            root,
+            getAdjacentNode(root, key, 0)->data,
+            NULL
+    );
 }
 
 Node *readFromFile(int *wordCount) {
@@ -95,7 +99,7 @@ int main() {
 
         if (node) {
             printf("%s - Correct.", node->data);
-        }else {
+        } else {
             printf("%s - Incorrect, did you mean: ", word);
 
             Node *inorderPre = inorderPredecessor(dictionary, word);
