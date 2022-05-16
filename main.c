@@ -10,7 +10,7 @@ void removeNewLine(char *string) {
 Node *getAdjacentNode(Node *current, char *key, int isSuccessor) {
     Node *successor;
 
-    while (current) {
+    while (current && strcasecmp(current->data , key) != 0) {
         char *first = isSuccessor ? current->data : key;
         char *second = !isSuccessor ? current->data : key;
 
@@ -54,7 +54,7 @@ Node *findParent(Node *node, char *key, Node *parent) {
 Node *previousBeforeNull(Node *root, char *key) {
     if (!root) return NULL;
 
-    return findParent(root, inorderSuccessor(root, key)->data, NULL);
+    return findParent(root, getAdjacentNode(root, key, 0)->data, NULL);
 }
 
 Node *readFromFile(int *wordCount) {
@@ -102,14 +102,14 @@ int main() {
             Node *inorderSuc = inorderSuccessor(dictionary, word);
             Node *previousNode = previousBeforeNull(dictionary, word);
 
-            if (previousNode)
-                printf("%s", previousNode->data);
+            if (inorderSuc)
+                printf("%s", inorderSuc->data);
 
             if (inorderPre)
                 printf(", %s", inorderPre->data);
 
-            if (inorderSuc)
-                printf(", %s", inorderSuc->data);
+            if (previousNode)
+                printf(", %s", previousNode->data);
 
         }
 

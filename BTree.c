@@ -77,3 +77,15 @@ void displayBTree(Node *root) {
     printf("[%s]\n", root->data);
     displayBTree(root->right);
 }
+
+Node *findMin(Node *n) {
+    if (n && n->left)
+        return findMin(n->left);
+    return n;
+}
+
+Node *findMax(Node *n) {
+    if (n && n->right)
+        return findMax(n->right);
+    return n;
+}
