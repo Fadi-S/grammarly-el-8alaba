@@ -10,7 +10,7 @@ void removeNewLine(char *string) {
 Node *getAdjacentNode(Node *current, char *key, int isSuccessor) {
     Node *adjacent;
 
-    while (current && strcasecmp(current->data, key) != 0) {
+    while (current) {
         char *first = isSuccessor ? current->data : key;
         char *second = !isSuccessor ? current->data : key;
 
@@ -69,12 +69,16 @@ Node *readFromFile(int *wordCount) {
         exit(-1);
     }
 
-    Node *root = newNode("-");
+    Node *root = NULL;
     while (!feof(file)) {
         char word[32];
         fgets(word, 31, file);
         removeNewLine(word);
         (*wordCount)++;
+        if(!root) {
+            root = newNode(word);
+            continue;
+        }
         insertData(root, word);
     }
 

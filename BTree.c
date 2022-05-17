@@ -26,7 +26,7 @@ Node *newNode(char *data) {
 int getHeight(Node *root) {
     int leftHeight, rightHeight;
     if (root == NULL)
-        return 0;
+        return -1;
 
     leftHeight = getHeight(root->left);
     rightHeight = getHeight(root->right);
