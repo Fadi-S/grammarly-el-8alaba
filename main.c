@@ -75,12 +75,10 @@ Node *readFromFile(int *wordCount) {
         fgets(word, 31, file);
         removeNewLine(word);
         (*wordCount)++;
-        if(!root) {
-            root = newNode(word);
-            continue;
-        }
-        insertData(root, word);
+        root = insertData(root, word);
     }
+
+    fclose(file);
 
     return root;
 }

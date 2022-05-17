@@ -53,9 +53,7 @@ Node *insertNode(Node *node, Node *nNode) {
 Node *insertData(Node *node, char *data) {
     Node *nNode = newNode(data);
 
-    insertNode(node, nNode);
-
-    return nNode;
+    return insertNode(node, nNode);
 }
 
 Node *searchBTree(Node *root, char *key) {
